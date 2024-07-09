@@ -1,7 +1,6 @@
-import mongoose from "mongoose";
+import mongoose, { Document, Model, Schema } from 'mongoose';
 
-
-const blogSchema = new mongoose.Schema({
+const blogSchema = new Schema({
   title: {
     type: String,
     required: true,
@@ -12,11 +11,12 @@ const blogSchema = new mongoose.Schema({
   },
 });
 
-interface Blogdoc{
-  title:string;
-  discription:string;
+interface BlogDoc extends Document {
+  title: string;
+  description: string;
 }
 
-const Blog= mongoose.model.Blog  || mongoose.model("Blog",blogSchema);
+// Ensuring model creation only if it does not exist
+const Blog: Model<BlogDoc> = mongoose.models.Blog || mongoose.model<BlogDoc>('Blog', blogSchema);
 
 export default Blog;

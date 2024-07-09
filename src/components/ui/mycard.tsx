@@ -1,16 +1,11 @@
-/**
- * v0 by Vercel.
- * @see https://v0.dev/t/94v88bGLF1J
- * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
- */
 import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 
-export default function Mycard() {
+export default function Mycard(data:{_id:string,title:string,discription:string}) {
   return (
-    <Card className="w-full max-w-md">
+    <Card className=" max-w-md flex flex-col flex-wrap">
       <CardHeader>
-        <CardTitle>Create project</CardTitle>
-        <CardDescription>Deploy your new project in one-click.</CardDescription>
+        <CardTitle>{data.title}</CardTitle>
+        <CardDescription>{data.discription}</CardDescription>
       </CardHeader>
     </Card>
   )

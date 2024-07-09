@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import dbconnect from "@/database"
 import Joi from "joi";
 import Blog from "@/models/blog";
@@ -8,7 +8,7 @@ const AddNewBlog = Joi.object({
     title: Joi.string().required(),
     content: Joi.string().required()
 })
-export async function POST(req: Request, res: Response) {
+export async function POST(req: NextRequest, res: NextResponse) {
 
     try {
         await dbconnect();
