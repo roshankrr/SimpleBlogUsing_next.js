@@ -4,12 +4,12 @@ import Joi from "joi";
 import Blog from "@/models/blog";
 
 
+
 const AddNewBlog = Joi.object({
     title: Joi.string().required(),
     content: Joi.string().required()
 })
 export async function POST(req: NextRequest, res: NextResponse) {
-
     try {
         await dbconnect();
         const extractedData = await req.json();
@@ -35,6 +35,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
                 success: true,
                 message: "Blog Created Successfully"
             })
+            
 
         }
         else {

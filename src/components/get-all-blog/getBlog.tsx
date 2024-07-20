@@ -2,6 +2,9 @@
 
 import { useState, useEffect } from "react";
 import Mycard from "../ui/mycard";
+import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
+import { useRouter } from "next/navigation";
+
 
 interface Blog {
     _id:string,
@@ -13,34 +16,66 @@ export default function GetBlog() {
   const [blogs, setBlogs] = useState<Blog[]>([]);
   const [isLoading, setIsLoading] = useState(false); // Add a loading state for better UX
 
-  useEffect(() => {
-    const fetchData = async () => {
-      setIsLoading(true); // Set loading state to true
-      try {
+  const fetchData = async () => {
+    setIsLoading(true); // Set loading state to true
+    try {
 
-        const apiResponse = await fetch("/api/get-blog", {
-          method: "GET",
-          
+      const apiResponse = await fetch("/api/get-blog", {
+        method: "GET",
+        
+      });
+
+
+      const result = await apiResponse.json();
+      console.log("result",result.data);
+      
+      
+      if (Array.isArray(result.data)) { // Check if the response is an array
+        setBlogs(result.data);
+      } else {
+        console.error("Unexpected API response format. Expected an array.");
+      }
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    } finally {
+      setIsLoading(false); // Set loading state to false
+    }
+  };
+
+  const handleDelete=async(id:string)=>{
+    try {
+        const apiResponse = await fetch("/api/delete-blog", {
+            method: "DELETE",
+            body: JSON.stringify({id:id}),
         });
 
-
         const result = await apiResponse.json();
-        console.log("result",result.data);
+        console.log(result);
+        console.log(id);
         
-        
-        if (Array.isArray(result.data)) { // Check if the response is an array
-          setBlogs(result.data);
-        } else {
-          console.error("Unexpected API response format. Expected an array.");
-        }
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      } finally {
-        setIsLoading(false); // Set loading state to false
-      }
-    };
+        // router.refresh();
+        fetchData();
 
-    fetchData();
+
+        if (result?.success) {
+            console.log("Blog Deleted");
+            
+        }
+        else {
+            console.log("Something went wrong");
+        }
+        
+    } catch (error) {
+        console.log(error);
+
+        
+    }
+
+}
+const router = useRouter();
+
+  useEffect(() => {
+        fetchData();
   }, []);
 
   // Conditionally render content based on loading state
@@ -50,9 +85,20 @@ export default function GetBlog() {
         <p>Loading blog data...</p>
       ) : (
         blogs.map((blog) => (
-          <Mycard _id={blog._id} title={blog.title} discription={blog.discription} /> // Assuming Mycard has a key prop
-        ))
+          <Card className=" max-w-md flex flex-col flex-wrap">
+          <CardHeader>
+            <CardTitle>{blog.title}</CardTitle>
+            <CardDescription>{blog.discription}</CardDescription>
+            <div className="flex gap-2 pt-5">
+              <button className="p-4 bg-black text-white rounded-xl" onClick={() => handleDelete(blog._id)}>Delete</button>
+              <button className="p-4 bg-black text-white rounded-xl">Edit</button>
+            </div>
+          </CardHeader>
+        </Card>))
       )}
+
+
+
     </div>
   );
 }

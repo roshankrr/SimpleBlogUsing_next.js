@@ -13,8 +13,8 @@ import {
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import Link from "next/link"
-import { useState } from "react"
-
+import { use, useEffect, useState } from "react"
+// import { useRouter } from "next/navigation"
 const initialBlogFormData = {
     title: '',
     discription: '',
@@ -22,18 +22,15 @@ const initialBlogFormData = {
 }
 
 
-
-
-
 export default function AddBlog() {
 
     const [loading, setloading] = useState(false);
     const [openblogDialog, setopenblogDialog] = useState(false);
     const [blogFormData, setBlogFormData] = useState(initialBlogFormData);
-
-
+    // const router=useRouter();
 
     const handelSubmit = async () => {
+
 
         // event.preventDefault(); // Prevent default form submission
         try {
@@ -48,8 +45,11 @@ export default function AddBlog() {
                 setBlogFormData(blogFormData);
                 setopenblogDialog(false);
                 setloading(true);
+                // router.push("/blog");
+                
+                
                 // Redirect to the "/blog" page
-                // window.location.href = "/blog";
+                window.location.href = "/blog";
             }
 
 
@@ -63,7 +63,11 @@ export default function AddBlog() {
 
         }
     }
+
+
+
     return <>
+    
         <div className="">
 
             <Dialog open={openblogDialog}>
@@ -72,7 +76,7 @@ export default function AddBlog() {
                         setopenblogDialog(true)
                         setBlogFormData(initialBlogFormData);
                     }} variant="outline"> Add Blog</Button>
-                    <Link href={'/'}><Button>Reload</Button></Link>
+                    {/* <Link href={'/'}><Button>Reload</Button></Link> */}
                     
                 </DialogTrigger>
                 <DialogContent className="sm:max-w-[425px]">

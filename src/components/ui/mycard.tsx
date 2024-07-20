@@ -1,4 +1,5 @@
 import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
+import Link from "next/link"
 
 export default function Mycard(data:{_id:string,title:string,discription:string}) {
   return (
