@@ -70,7 +70,7 @@ export default function AddBlog() {
     
         <div className="">
 
-            <Dialog open={openblogDialog}>
+            <Dialog  open={openblogDialog}>
                 <DialogTrigger >
                     <Button onClick={() => {
                         setopenblogDialog(true)
@@ -81,7 +81,7 @@ export default function AddBlog() {
                 </DialogTrigger>
                 <DialogContent className="sm:max-w-[425px]">
                     <DialogHeader>
-                        <DialogTitle>Add New Blog</DialogTitle>
+                        <DialogTitle>Add New Blog <span onClick={() => setopenblogDialog(false)} className="text-2xl text-white cursor-pointer absolute right-3 top-3 z-20">❎</span></DialogTitle>
                         <DialogDescription>
                             Enter Your Discription Here
                         </DialogDescription>

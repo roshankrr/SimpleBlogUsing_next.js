@@ -18,11 +18,11 @@ export default function Blog() {
             <div className="h-1/2 w-full text-black  p-10 flex  flex-wrap">
                 <GetBlog></GetBlog>
             </div>
-            <div className="w-full flex gap-24 px-5 animate-bounce">
+            {/* <div className="w-full flex gap-24 px-5 animate-bounce">
                 {companyLogo.map((logo, index) => (
                     <Image key={index} height={150} width={150} src={logo} alt="Company Logo" />
                 ))}
-            </div>
+            </div> */}
 
         </div>
 

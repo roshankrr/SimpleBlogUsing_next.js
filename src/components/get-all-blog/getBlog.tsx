@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Mycard from "../ui/mycard";
 import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { useRouter } from "next/navigation";
+import UpdateBlog from "../update-blog/updateBlog";
 
 
 interface Blog {
@@ -72,6 +73,19 @@ export default function GetBlog() {
     }
 
 }
+
+
+const handleEdit=()=>{
+  
+}
+
+
+
+
+
+
+
+
 const router = useRouter();
 
   useEffect(() => {
@@ -80,18 +94,18 @@ const router = useRouter();
 
   // Conditionally render content based on loading state
   return (
-    <div className= "text-white w-full item-center flex gap-5 flex-wrap">
+    <div className= "text-white  w-full flex  gap-5 flex-wrap-reverse ">
       {isLoading ? (
         <p>Loading blog data...</p>
       ) : (
         blogs.map((blog) => (
-          <Card className=" max-w-md flex flex-col flex-wrap">
+          <Card className=" max-w-md h-fit     ">
           <CardHeader>
             <CardTitle>{blog.title}</CardTitle>
             <CardDescription>{blog.discription}</CardDescription>
             <div className="flex gap-2 pt-5">
               <button className="p-4 bg-black text-white rounded-xl" onClick={() => handleDelete(blog._id)}>Delete</button>
-              <button className="p-4 bg-black text-white rounded-xl">Edit</button>
+              <UpdateBlog blogId={blog._id}></UpdateBlog>
             </div>
           </CardHeader>
         </Card>))
