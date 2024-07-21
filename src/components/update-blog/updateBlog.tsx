@@ -24,17 +24,6 @@ const initialBlogFormData = {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
 export default function UpdateBlog( blogId:{blogId:string} ) {
 
 

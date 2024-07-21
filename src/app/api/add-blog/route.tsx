@@ -9,7 +9,7 @@ const AddNewBlog = Joi.object({
     title: Joi.string().required(),
     content: Joi.string().required()
 })
-export async function POST(req: NextRequest, res: NextResponse) {
+export  async function POST(req: NextRequest, res: NextResponse) {
     try {
         await dbconnect();
         const extractedData = await req.json();
