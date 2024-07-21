@@ -28,6 +28,17 @@ export default function AddBlog() {
     const [openblogDialog, setopenblogDialog] = useState(false);
     const [blogFormData, setBlogFormData] = useState(initialBlogFormData);
     // const router=useRouter();
+    const [isMounted, setIsMounted] = useState(false);
+
+//   useEffect(() => {
+//     setIsMounted(true);
+//   }, []);
+
+//   if (!isMounted) {
+//     return null;
+//   }
+
+
 
     const handelSubmit = async () => {
 
@@ -71,7 +82,7 @@ export default function AddBlog() {
         <div className="">
 
             <Dialog  open={openblogDialog}>
-                <DialogTrigger >
+                <DialogTrigger asChild={true} >
                     <Button onClick={() => {
                         setopenblogDialog(true)
                         setBlogFormData(initialBlogFormData);

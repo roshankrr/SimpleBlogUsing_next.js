@@ -58,7 +58,7 @@ export default function UpdateBlog( blogId:{blogId:string} ) {
     
     <div className="">
         <Dialog open={openblogDialog}>
-            <DialogTrigger >
+            <DialogTrigger asChild={true} >
                 <Button className=" p-4 rounded-xl bg-black text-white" onClick={() => {
                     setopenblogDialog(true)
                     setBlogFormData(initialBlogFormData);

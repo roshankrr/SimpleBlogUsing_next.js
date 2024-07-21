@@ -104,7 +104,7 @@ const router = useRouter();
             <CardTitle>{blog.title}</CardTitle>
             <CardDescription>{blog.discription}</CardDescription>
             <div className="flex gap-2 pt-5">
-              <button className="p-4 bg-black text-white rounded-xl" onClick={() => handleDelete(blog._id)}>Delete</button>
+              <button className="p-4 hover:bg-white hover:border hover:border-gray-300  hover:text-black bg-black text-white rounded-xl" onClick={() => handleDelete(blog._id)}>Delete</button>
               <UpdateBlog blogId={blog._id}></UpdateBlog>
             </div>
           </CardHeader>
