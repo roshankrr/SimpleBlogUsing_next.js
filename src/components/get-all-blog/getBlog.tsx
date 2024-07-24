@@ -48,6 +48,7 @@ export default function GetBlog() {
         const apiResponse = await fetch("/api/delete-blog", {
             method: "DELETE",
             body: JSON.stringify({id:id}),
+            cache:"no-store"
         });
 
         const result = await apiResponse.json();
@@ -110,8 +111,6 @@ const router = useRouter();
           </CardHeader>
         </Card>))
       )}
-
-
 
     </div>
   );
