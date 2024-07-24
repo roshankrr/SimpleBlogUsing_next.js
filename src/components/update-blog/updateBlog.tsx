@@ -40,6 +40,7 @@ export default function UpdateBlog( blogId:{blogId:string} ) {
             const apiResponse = await fetch("api/update-blog", {
                 method: "PUT",
                 body: JSON.stringify(blogFormData),
+                cache:"no-store"
                 
             });
             const data = await apiResponse.json();

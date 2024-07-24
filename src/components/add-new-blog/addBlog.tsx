@@ -49,6 +49,7 @@ export default function AddBlog() {
             const apiResponse = await fetch("api/add-blog", {
                 method: "POST",
                 body: JSON.stringify(blogFormData),
+                cache:"no-store"
             });
 
             const result = await apiResponse.json();
