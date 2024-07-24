@@ -100,6 +100,8 @@ const router = useRouter();
       {isLoading ? (
         <p>Loading blog data...</p>
       ) : (
+
+        blogs.length>0?
         blogs.map((blog) => (
           <Card className=" max-w-md h-fit     ">
           <CardHeader>
@@ -111,7 +113,8 @@ const router = useRouter();
             </div>
           </CardHeader>
         </Card>))
-      )}
+      :
+      <p>No blogs found</p>)}
 
     </div>
   );
