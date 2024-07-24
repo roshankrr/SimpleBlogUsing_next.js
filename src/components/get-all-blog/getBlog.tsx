@@ -23,6 +23,7 @@ export default function GetBlog() {
 
       const apiResponse = await fetch("/api/get-blog", {
         method: "GET",
+        cache:"no-store"
         
       });
 
